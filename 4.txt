@@ -1,0 +1,21 @@
+create table postac(id_postaci int primary key auto_increment, nazwa varchar(40), rodzaj enum('wiking','ptak','kobieta'),data_ur DATE, wiek int unsigned);
+INSERT INTO postac (id_postaci,nazwa,rodzaj,data_ur,wiek) VALUES (1,'Bjorn','wiking','1980.10.05',41),(2,'Drozd','ptak','2018.03.12',3),(3,'Tesciowa','kobieta','1933.04.05',80);
+update postac set wiek=88 where nazwa='Tesciowa';
+
+create table walizka(id_walizki int primary key auto_increment, pojemnosc int unsigned, kolor enum('rozowy','czerwony','teczowy','zolty'), id_wlasciciela int, FOREIGN KEY (id_wlasciciela) REFERENCES postac(id_postaci)on delete cascade);
+alter table walizka alter column kolor set default 'rozowy';
+insert into walizka (id_walizki, pojemnosc, kolor, id_wlasciciela) VALUES (1, 20, 'zolty',1), (2, 15, 'czerwony',3);
+
+create table izba(adres_budynku varchar(50), nazwa_izby varchar(50), metraz int unsigned, wlasciciel int, foreign key(wlasciciel) references postac (id_postaci) on delete set null, constraint PK_izba PRIMARY KEY (adres_budynku,nazwa_izby));
+
+alter table izba add column kolor varchar(20)  default 'czarny' after metraz;
+
+insert into izba(adres_budynku,nazwa_izby,metraz,kolor,wlasciciel) values ('lesna 3', 'spizarnia',24,'bialy',1);
+
+ create table przetwory (id_przetworu int primary key, rok_produkcji int(4) unsigned default '1654', id_wykonawcy int, zawartosc varchar(40), dodatek varchar(40) default 'papryczka chilli', id_konsumenta int, foreign key(id_wykonawcy) references postac(id_postaci), foreign key (id_konsumenta) references postac(id_postaci));
+
+insert into przetwory(id_przetworu, zawartosc) VALUES (1,'bigos');
+
+insert into postac(id_postaci, nazwa, rodzaj, data_ur, wiek) VALUES (4, 'Agnar','wiking','1999.07.04', 22), (5,'Alrik','wiking','1967.09.06',51),(6,'Ali','wiking','1988.09.04', 33),(7,'Armod','wiking','1978.02.05',44),(8,'Arnkel','wiking','1990.09.09',31);
+
+create table statek (nazwa_statku varchar(40) primary key, rodzaj_statku enum('wojenny','handlowy'), data_wodowania date, nax_ladownosci int unsigned );
