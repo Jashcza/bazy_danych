@@ -1,0 +1,5 @@
+delete from postac where nazwa!='Bjorn' and rodzaj='wiking' order by wiek desc limit 2;
+
+alter table walizka drop foreign key id_wlasciciela;
+
+alter table postac modify id_postaci int;
