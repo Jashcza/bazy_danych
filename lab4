@@ -34,15 +34,23 @@ a)
 alter table postac modify column rodzaj enum('wiking','ptak','kobieta','syrena','waz');
 insert into postac(id_postaci,nazwa,wiek,data_ur,pesel,rodzaj) values (7,'Waz',5,'2016.05.03','12345678907','waz');
 b)
-create table marynarz(
-id_postaci int,
-nazwa varchar(40),
-rodzaj enum('wiking','ptak','kobieta','syrena','waz'),
-data_ur date,
-wiek int unsigned,
-funkcja varchar(40),
-statek varchar(40),
-pesel char(11) primary key not null
-);
+create table marynarz like postac;
 insert into marynarz select * from postac where statek is not null;
 c)
+alter table marynarz add foreign key(statek) references statek(nazwa_statku);
+
+5.
+a)
+update postac set statek = null ;
+b)
+delete from postac where id_postaci=8;
+c)
+alter table marynarz drop foreign key marynarz_ibfk_1;
+delete from statek;
+d)
+alter table postac drop foreign key postac_ibfk_1;
+drop table statek;
+e)
+create table zwierz( id int primary key auto_increment, nazwa char(40), wiek int unsigned );
+f)
+insert into zwierz(nazwa,wiek) select nazwa,wiek from postac where rodzaj='ptak' or rodzaj='waz';
