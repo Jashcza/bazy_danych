@@ -22,3 +22,9 @@ c)
 insert into postac(id_postaci,nazwa,rodzaj,wiek,data_ur,pesel) values (5,'Gertruda Nieszczera','syrena',20,'2000.09.09','12345678905');
 
 3.
+a)
+update postac set statek='statek2' where rodzaj ='wiking' and nazwa like '%a%';
+b)
+update statek set nax_ladownosci=7*nax_ladownosci/10 where data_wodowania between '2001.01.01'and '1901.01.01';
+c)
+alter table postac add check (wiek>1000);
