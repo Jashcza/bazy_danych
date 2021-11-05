@@ -1,5 +1,16 @@
+1. 
+a)
 delete from postac where nazwa!='Bjorn' and rodzaj='wiking' order by wiek desc limit 2;
 
-alter table walizka drop foreign key id_wlasciciela;
+b)
+alter table walizka drop foreign key walizka_ibfk_1;
+alter table przetwory drop foreign key przetwory_ibfk_1;
+alter table przetwory drop foreign key przetwory_ibfk_2;
 
 alter table postac modify id_postaci int;
+alter table postac drop primary key;
+
+2.
+a) 
+alter table postac add column pesel char(11);
+
