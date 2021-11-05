@@ -19,3 +19,18 @@ insert into przetwory(id_przetworu, zawartosc) VALUES (1,'bigos');
 insert into postac(id_postaci, nazwa, rodzaj, data_ur, wiek) VALUES (4, 'Agnar','wiking','1999.07.04', 22), (5,'Alrik','wiking','1967.09.06',51),(6,'Ali','wiking','1988.09.04', 33),(7,'Armod','wiking','1978.02.05',44),(8,'Arnkel','wiking','1990.09.09',31);
 
 create table statek (nazwa_statku varchar(40) primary key, rodzaj_statku enum('wojenny','handlowy'), data_wodowania date, nax_ladownosci int unsigned );
+insert into statek(nazwa_statku,rodzaj_statku,data_wodowania,nax_ladownosci) Values ('statek1','wojenny','2021.09.09',20),('statek2','handlowy','1999.08.06',20);
+
+alter table postac add column funkcja varchar(40);
+
+update postac set funkcja='kapitan' where id_postaci = 1 ;
+
+alter table postac add statek varchar(40);
+alter table postac add foreign key(statek) references statek(nazwa_statku);
+
+update postac set statek ='statek2' where rodzaj = 'wiking' and id_postaci <3;
+update postac set statek ='statek1' where rodzaj = 'wiking' and id_postaci >4;
+update postac set statek ='statek2' where rodzaj = 'ptak';
+
+delete from izba where nazwa_izby = 'spizarnia';
+drop table izba;
