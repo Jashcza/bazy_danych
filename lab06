@@ -16,3 +16,10 @@ select rodzaj, sum(waga) from zasob group by rodzaj;
 select nazwa, avg(waga) from zasob where ilosc>=4 group by nazwa having avg(waga)>10;
 
 3.
+select rodzaj,count(distinct(nazwa)) from zasob group by rodzaj having sum(ilosc) >1;
+
+Zadanie 3.
+1.
+select kreatura.nazwa, sum(ekwipunek.ilosc) as ilosc_zasobow from kreatura INNER JOIN ekwipunek ON kreatura.idKreatury=ekwipunek.idKreatury GROUP BY nazwa;
+
+2.
