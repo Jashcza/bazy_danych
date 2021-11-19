@@ -30,7 +30,7 @@ select k.idKreatury, k.nazwa from kreatura k LEFT JOIN ekwipunek e on k.idKreatu
 select idKreatury, nazwa from kreatura where idKreatury not in (select distinct idKreatury from ekwipunek where idKreatury is not null);
 
 Zadanie 4.
-1.!
+1.!!
 select k.nazwa from kreatura k natural join ekwipunek e where year(k.dataUr) BETWEEN 1669 and 1680;
 2.!
 select   from kreatura k inner join ekwipunek e on k.idKreatury=e.idKreatury;
