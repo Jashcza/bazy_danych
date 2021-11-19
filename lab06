@@ -1,0 +1,18 @@
+Zadanie 1.
+1.
+select avg(waga) from kreatura where rodzaj='wiking';
+
+2.
+select rodzaj, count(rodzaj), avg(waga) from kreatura group by rodzaj;
+
+3.
+select round(avg(year(curdate())-year(dataUr))) as srednia_wieku, rodzaj from kreatura group by rodzaj;
+
+Zadanie 2.
+1.
+select rodzaj, sum(waga) from zasob group by rodzaj;
+
+2.
+select nazwa, avg(waga) from zasob where ilosc>=4 group by nazwa having avg(waga)>10;
+
+3.
