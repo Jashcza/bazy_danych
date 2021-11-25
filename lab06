@@ -23,14 +23,25 @@ Zadanie 3.
 select k.nazwa, sum(e.ilosc) as ilosc_zasobow from kreatura k INNER JOIN ekwipunek e ON k.idKreatury=e.idKreatury GROUP BY k.idKreatury;
 
 2.!!!!!!!! dokończ
-select k.nazwa, z.nazwa as ilosc_zasobow from kreatura k INNER JOIN ekwipunek e ON k.idKreatury=e.idKreatury INNER JOIN zasob z ON e.idZasobu=z.idZasobu GROUP BY z.idZasobu;
+SELECT k.nazwa, z.nazwa
+FROM kreatura k
+INNER JOIN ekwipunek e
+ON k.idKreatury=e.idKreatury
+INNER JOIN zasob z 
+ON e.idZasobu=z.idZasobu;
 
 3.
 select k.idKreatury, k.nazwa from kreatura k LEFT JOIN ekwipunek e on k.idKreatury=e.idKreatury Where e.idKreatury is null; 
 select idKreatury, nazwa from kreatura where idKreatury not in (select distinct idKreatury from ekwipunek where idKreatury is not null);
 
 Zadanie 4.
-1.!!
-select k.nazwa from kreatura k natural join ekwipunek e where year(k.dataUr) BETWEEN 1669 and 1680;
+1.
+SELECT kreatura.nazwa, zasob.nazwa FROM kreatura, zasob NATURAL JOIN ekwipunek WHERE kreatura.rodzaj=" AND YEAR(dataUr) BETWEEN 1670 AND 1679;
 2.!
-select   from kreatura k inner join ekwipunek e on k.idKreatury=e.idKreatury;
+SELECT k.nazwa FROM kreatura k
+INNER JOIN ekwipunek e
+ON k.idKreatury=e.idKreatury
+INNER JOIN zasob z 
+ON e.idZasobu=z.idZasobu WHERE z.rodzaj='jedzenie' ORDER BY k.dataUr ASC;
+3.
+
