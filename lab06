@@ -36,12 +36,15 @@ select idKreatury, nazwa from kreatura where idKreatury not in (select distinct 
 
 Zadanie 4.
 1.
-SELECT kreatura.nazwa, zasob.nazwa FROM kreatura, zasob NATURAL JOIN ekwipunek WHERE kreatura.rodzaj=" AND YEAR(dataUr) BETWEEN 1670 AND 1679;
-2.!
+SELECT kreatura.nazwa, zasob.nazwa FROM kreatura, zasob NATURAL JOIN ekwipunek WHERE kreatura.rodzaj='wiking' AND YEAR(dataUr) BETWEEN 1670 AND 1679;
+2.
 SELECT k.nazwa FROM kreatura k
 INNER JOIN ekwipunek e
 ON k.idKreatury=e.idKreatury
 INNER JOIN zasob z 
-ON e.idZasobu=z.idZasobu WHERE z.rodzaj='jedzenie' ORDER BY k.dataUr ASC;
+ON e.idZasobu=z.idZasobu WHERE z.rodzaj='jedzenie' ORDER BY k.dataUr ASC LIMIT 5;
 3.
+
+Zadanie 5.
+1.
 
