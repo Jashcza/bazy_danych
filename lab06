@@ -44,7 +44,7 @@ ON k.idKreatury=e.idKreatury
 INNER JOIN zasob z 
 ON e.idZasobu=z.idZasobu WHERE z.rodzaj='jedzenie' ORDER BY k.dataUr ASC LIMIT 5;
 3.
-Select K1.nazwa FROM kreatury K1, kreatury K2 WHERE K1.idKreatury-K2.idKreatury=5;
+Select Concat(K1.nazwa, " ", K2.nazwa) FROM kreatury K1, kreatury K2 WHERE K1.idKreatury-K2.idKreatury=5;
 
 Zadanie 5.
 1.
