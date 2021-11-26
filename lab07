@@ -1,1 +1,21 @@
+Zadanie 1.
+1.
 
+2.
+select nazwa from kreatura
+where idKreatury not in (select id_uczestnika from uczestnicy);
+
+
+
+
+
+
+NOTATKI
+----------------------------------------------
+SELECT * FROM kreatura k inner join uczestnicy u on k.idKreatury=u.id_uczestnika 
+WHERE (select distinct id_uczestnika from uczestnicy where id_wyprawy is not null);
+
+SELECT * FROM kreatura k
+INNER JOIN uczestnicy u ON k.idKreatury=u.id_uczestnika;
+
+SELECT DISTINCT id_uczestnika from uczestnicy;
