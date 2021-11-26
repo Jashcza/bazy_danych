@@ -48,4 +48,23 @@ Select Concat(K1.nazwa, " ", K2.nazwa) FROM kreatury K1, kreatury K2 WHERE K1.id
 
 Zadanie 5.
 1.
-select 
+select k.rodzaj,avg(e.ilosc*z.waga) as srednia_waga from kreatura k 
+inner join ekwipunek e on k.idKreatury=e.idKreatury 
+inner join zasob z on e.idZasobu = z.idZasobu
+where k.rodzaj not in('malpa','waz') 
+group by k.rodzaj having sum(e.ilosc)<30;
+
+2.
+select nazwa, dataUr, rodzaj 
+from kreatura 
+where dataUr in (select max(dataUr)from kreatura group by rodzaj)
+union
+select nazwa, dataUr, rodzaj 
+from kreatura 
+where dataUr in (select min(dataUr)from kreatura group by rodzaj);
+
+
+
+select nazwa, dataUr, rodzaj 
+from kreatura k, (select max(dataUr) as min, min(dataUr) as max from kreatura group by rodzaj) pod
+where k.dataUr=pod.min or k.dataUr=pod.max;
