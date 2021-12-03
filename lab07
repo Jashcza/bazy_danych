@@ -38,10 +38,32 @@ group by k.nazwa;
 
 Zadanie 4.
 1.
+select idWyprawy, sum(length(dziennik)) from etapy_wyprawy
+group by idWyprawy having sum(length(dziennik)) < 400; 
 
+%% dodać nazwe jeszcze eghggh
+2.
+select * from zasob z
+inner join ekwipunek e on z.idZasobu = e.idZasobu
+inner join kreatura k on e.idKreatury = k.idKreatury
+inner join uczestnicy u on k.idKreatury = u.id_uczestnika;
+group by u.id_wyprawy;
 
+sum(z.ilosc*z.waga)\count(id_uczestnika)
 
+zasob ilosc, waga, idZasobu
+ekwipunek idZasobu, 
+kreatura idKreatury
+uczestnicy id_uczestnika, id_wyprawy
 
+Zadanie 5.
+1.
+select k.nazwa, datediff(w.data_rozpoczecia,k.dataUr) from kreatura k
+inner join uczestnicy u on u.id_uczestnika=k.idKreatury
+inner join wyprawa w on w.id_wyprawy = u.id_wyprawy
+inner join etapy_wyprawy ew on w.id_wyprawy = ew.idWyprawy
+inner join sektor s on ew.sektor = s.id_sektora
+where s.nazwa = "chatka dziadka";
 NOTATKI
 ----------------------------------------------
 SELECT * FROM kreatura k inner join uczestnicy u on k.idKreatury=u.id_uczestnika 
@@ -60,3 +82,5 @@ select rodzaj, group_concat(nazwa separator '-') from kreatura group by rodzaj;
 
 select k.idKreatury, ifnull(e.idKreatury, 'Brak wlasciciela') from ekwipunek e
 left join kreatura k on k.idKreatury=e.idKreatury;
+
+select datediff(curdate(),dataUr) from kreatura;
