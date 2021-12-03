@@ -18,9 +18,27 @@ inner join uczestnicy u ON w.id_wyprawy = u.id_wyprawy
 inner join kreatura k on u.id_uczestnika = k.idKreatury
 group by w.id_wyprawy;
 2.
-etapy_wypraw 
-sektor
-wyprawa
+Select ew.idEtapu, s.nazwa,ew.kolejnosc, k.nazwa as kierownik From kreatura k
+inner join wyprawa w on k.idKreatury = w.kierownik
+inner join etapy_wyprawy ew on w.id_wyprawy = ew.idWyprawy
+inner join sektor s on s.id_sektora = ew.sektor
+order by w.data_rozpoczecia, ew.kolejnosc
+;
+
+Zadanie 3.
+1.
+select s.nazwa, ifnull(count(ew.sektor),'0') as ilosc from etapy_wyprawy ew
+right join sektor s on s.id_sektora = ew.sektor
+group by s.nazwa;
+
+2.
+select k.nazwa, if(count(id_wyprawy) =0,'nie brala','brala') from kreatura k
+left join uczestnicy u on k.idKreatury = u.id_uczestnika
+group by k.nazwa;
+
+Zadanie 4.
+1.
+
 
 
 
@@ -39,3 +57,6 @@ where u.id_wyprawy is null;
 
 select rodzaj, count(*) from kreatura group by rodzaj;
 select rodzaj, group_concat(nazwa separator '-') from kreatura group by rodzaj;
+
+select k.idKreatury, ifnull(e.idKreatury, 'Brak wlasciciela') from ekwipunek e
+left join kreatura k on k.idKreatury=e.idKreatury;
