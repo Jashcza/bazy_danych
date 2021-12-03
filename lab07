@@ -38,16 +38,25 @@ group by k.nazwa;
 
 Zadanie 4.
 1.
-select idWyprawy, sum(length(dziennik)) from etapy_wyprawy
-group by idWyprawy having sum(length(dziennik)) < 400; 
+select w.nazwa, sum(length(ew.dziennik)) as suma from etapy_wyprawy ew
+Inner join wyprawa w on ew.idWyprawy = w.id_wyprawy
+group by ew.idWyprawy 
+having suma < 400; 
 
-%% dodać nazwe jeszcze eghggh
-2.
-select * from zasob z
+2.!!!
+select Sum(z.ilosc*z.waga)/count(u.id_uczestnika) from uczestnicy u
+inner join ekwipunek e on u.id_uczestnika = e.idKreatury
+right join zasob z on z.idZasobu= e.idZasobu
+Group by u.id_wyprawy;
+
+
+
+select w.nazwa,(z.ilosc*z.waga/count(u.id_uczestnika)) from zasob z
 inner join ekwipunek e on z.idZasobu = e.idZasobu
-inner join kreatura k on e.idKreatury = k.idKreatury
-inner join uczestnicy u on k.idKreatury = u.id_uczestnika;
-group by u.id_wyprawy;
+left join kreatura k on e.idKreatury = k.idKreatury
+inner join uczestnicy u on k.idKreatury = u.id_uczestnika
+inner join wyprawa w on w.id_wyprawy = u.id_wyprawy
+group by u.id_uczestnika;
 
 sum(z.ilosc*z.waga)\count(id_uczestnika)
 
@@ -55,6 +64,11 @@ zasob ilosc, waga, idZasobu
 ekwipunek idZasobu, 
 kreatura idKreatury
 uczestnicy id_uczestnika, id_wyprawy
+
+select w.nazwa,count(u.id_uczestnika),group_concat(k.nazwa) from wyprawa w 
+inner join uczestnicy u ON w.id_wyprawy = u.id_wyprawy
+inner join kreatura k on u.id_uczestnika = k.idKreatury
+group by w.id_wyprawy;
 
 Zadanie 5.
 1.
