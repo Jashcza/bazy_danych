@@ -44,9 +44,10 @@ group by ew.idWyprawy
 having suma < 400; 
 
 2.!!!
-select Sum(z.ilosc*z.waga)/count(u.id_uczestnika) from uczestnicy u
-inner join ekwipunek e on u.id_uczestnika = e.idKreatury
-right join zasob z on z.idZasobu= e.idZasobu
+select u.id_wyprawy, Sum(e.ilosc*z.waga)/count(distinct u.id_uczestnika) 
+from uczestnicy u
+left join ekwipunek e on u.id_uczestnika = e.idKreatury
+left join zasob z on z.idZasobu= e.idZasobu
 Group by u.id_wyprawy;
 
 
