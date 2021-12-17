@@ -1,0 +1,88 @@
+Zad 1.
+1.
+select imie, nazwisko, data_urodzenia from pracownik;
+
+2.
+select imie, nazwisko, (year(curdate())-year(data_urodzenia)) as wiek from pracownik;
+
+3.
+select d.nazwa, count(p.id_pracownika) from pracownik p
+inner join dzial d on p.dzial=d.id_dzialu
+group by d.id_dzialu;
+
+4.
+select k.nazwa_kategori, count(t.nazwa_towaru) from kategoria k
+inner join towar t on t.kategoria=k.id_kategori
+group by k.id_kategori;
+
+5.
+select k.nazwa_kategori, group_concat(t.nazwa_towaru) from kategoria k
+inner join towar t on t.kategoria=k.id_kategori
+group by k.id_kategori;
+
+6.
+select round(avg(pensja),2) from pracownik;
+
+7.
+select round(avg(pensja),2) from pracownik
+where (year(curdate())-year(data_zatrudnienia))>5;
+
+8.
+select t.nazwa_towaru from towar t 
+inner join pozycja_zamowienia z on t.id_towaru = z.towar
+group by t.id_towaru order by count(z.id_pozycji) DESC LIMIT 10;
+
+9.
+select z.numer_zamowienia, sum(pz.cena) as wartosc from zamowienie z
+inner join pozycja_zamowienia pz on z.numer_zamowienia = pz.zamowienie
+where z.data_zamowienia between '2017-01-01' AND '2017-03-31'
+group by pz.id_pozycji;
+
+10.
+select p.imie, p.nazwisko, sum(pz.cena) as suma from pracownik p
+inner join zamowienie z on p.id_pracownika=z.pracownik_id_pracownika
+inner join pozycja_zamowienia pz on z.numer_zamowienia = pz.zamowienie
+group by p.id_pracownika order by suma desc;
+
+Zad 2.
+
+1.
+select d.nazwa, min(p.pensja),max(p.pensja),avg(p.pensja) from dzial d
+inner join pracownik p on p.dzial=d.id_dzialu
+group by d.id_dzialu;
+
+2.
+select k.pelna_nazwa, sum(pz.cena) as cena from klient k 
+inner join zamowienie z on z.klient = k.id_klienta
+inner join pozycja_zamowienia pz on z.numer_zamowienia = pz.zamowienie
+group by k.id_klienta order by cena DESC limit 10 ;
+
+3.
+select year(z.data_zamowienia),sum(pz.cena) as przychod from zamowienie z
+inner join pozycja_zamowienia pz on z.numer_zamowienia = pz.zamowienie
+group by year(z.data_zamowienia) order by przychod DESC;
+
+4. 
+select sum(pz.cena) from pozycja_zamowienia pz
+inner join zamowienie z on z.numer_zamowienia = pz.zamowienie
+inner join status_zamowienia sz on sz.id_statusu_zamowienia=z.status_zamowienia
+where sz.nazwa_statusu_zamowienia = "anulowane"
+group by sz.id_statusu_zamowienia;
+
+5.
+select ak.miejscowosc,count(distinct z.id_zamowienia), sum(distinct z.id_zamowienia) from zamowienie z
+inner join klient k on z.klient = k.id_klienta
+inner join adres_klienta ak on ak.klient=k.id_klienta
+group by ak.miejscowosc;
+
+6.
+select sum(pz.cena) from zamowienie z
+inner join pozycja_zamowienia pz on z.numer_zamowienia = pz.zamowienie
+inner join status_zamowienia sz on sz.id_statusu_zamowienia=z.status_zamowienia
+where sz.nazwa_statusu_zamowienia = "zrealizowane"
+group by sz.id_statusu_zamowienia;
+
+7.
+select year(z.data_zamowienia),sum(pz.cena) as przychod from zamowienie z
+inner join pozycja_zamowienia pz on z.numer_zamowienia = pz.zamowienie
+group by year(z.data_zamowienia) order by przychod DESC;
