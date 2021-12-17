@@ -83,6 +83,6 @@ where sz.nazwa_statusu_zamowienia = "zrealizowane"
 group by sz.id_statusu_zamowienia;
 
 7.
-select year(z.data_zamowienia),sum(pz.cena) as przychod from zamowienie z
+select sum(pz.cena) as przychod from zamowienie z
 inner join pozycja_zamowienia pz on z.numer_zamowienia = pz.zamowienie
 group by year(z.data_zamowienia) order by przychod DESC;
