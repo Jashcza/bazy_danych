@@ -1,0 +1,15 @@
+1.
+delimiter //
+create trigger kreatura_before_insert
+before insert on kreatura
+FOR EACH ROW
+BEGIN
+ if new.waga <=0
+ then
+  set new.waga = 1;
+ End if;
+End
+//
+DELIMITER;
+
+
