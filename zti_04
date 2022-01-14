@@ -1,0 +1,14 @@
+Ćw 1.
+1.
+Select imie, nazwisko, data_urodzenia FROM pracownik 
+WHERE MONTH(data_urodzenia) = MONTH(curdate())
+ORDER BY DAY(data_urodzenia) ASC;
+
+
+
+
+
+
+
+
+Ćw 2.
