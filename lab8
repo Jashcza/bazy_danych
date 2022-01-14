@@ -13,3 +13,6 @@ End
 DELIMITER;
 
 
+CREATE TABLE archiwum_wypraw (id_wyprawy int primary key auto_increment,
+ nazwa VARCHAR(40) not null, data_rozpoczecia date, data_zakonczenia date,
+kierownik VARCHAR (40));
