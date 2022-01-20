@@ -1,4 +1,4 @@
-1. 
+Zadanie 1. 
 a)
 delete from postac where nazwa!='Bjorn' and rodzaj='wiking' order by wiek desc limit 2;
 
@@ -10,7 +10,7 @@ alter table przetwory drop foreign key przetwory_ibfk_2;
 alter table postac modify id_postaci int;
 alter table postac drop primary key;
 
-2.
+Zadanie 2.
 a) 
 alter table postac add column pesel char(11) not null;
 update postac set pesel='12345678900'+id_postaci;
@@ -21,7 +21,7 @@ alter table postac modify column rodzaj enum('wiking','ptak','kobieta','syrena')
 c)
 insert into postac(id_postaci,nazwa,rodzaj,wiek,data_ur,pesel) values (5,'Gertruda Nieszczera','syrena',20,'2000.09.09','12345678905');
 
-3.
+Zadanie 3.
 a)
 update postac set statek='statek2' where rodzaj ='wiking' and nazwa like '%a%';
 b)
@@ -29,7 +29,7 @@ update statek set nax_ladownosci=7*nax_ladownosci/10 where data_wodowania betwee
 c)
 ALTER TABLE postac ADD CHECK(wiek<1000);
 
-4.
+Zadanie 4.
 a)
 alter table postac modify column rodzaj enum('wiking','ptak','kobieta','syrena','waz');
 insert into postac(id_postaci,nazwa,wiek,data_ur,pesel,rodzaj) values (7,'Waz',5,'2016.05.03','12345678907','waz');
@@ -39,7 +39,7 @@ insert into marynarz select * from postac where statek is not null;
 c)
 alter table marynarz add foreign key(statek) references statek(nazwa_statku);
 
-5.
+Zadanie 5.
 a)
 update postac set statek = null ;
 b)
