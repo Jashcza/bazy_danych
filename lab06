@@ -64,7 +64,7 @@ from kreatura
 where dataUr in (select min(dataUr)from kreatura group by rodzaj);
 
 
-
+//
 select nazwa, dataUr, rodzaj 
 from kreatura k, (select max(dataUr) as min, min(dataUr) as max from kreatura group by rodzaj) pod
 where k.dataUr=pod.min or k.dataUr=pod.max;
