@@ -1,8 +1,8 @@
 Zadanie 1.
 1.
-Create table jaszczuka.kreatura select * from kreatura;
-Create table jaszczuka.zasob select * from zasob;
-Create table jaszczuka.ekwipunek select * from ekwipunek;
+Create table jaszczuka.kreatura AS (select * from kreatura);
+Create table jaszczuka.zasob AS (select * from zasob);
+Create table jaszczuka.ekwipunek AS (select * from ekwipunek);
 2.
 Select * from zasob;
 3.
